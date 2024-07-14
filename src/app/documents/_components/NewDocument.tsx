@@ -16,21 +16,6 @@ const templates = [
   },
   {
     id: 2,
-    title: "Wizardly Template",
-    description: `
-        [Exposition]
-        
-        [Rising Action]
-        
-        [Climax]
-        
-        [Falling Action]
-        
-        [Denouement]`,
-    footer: "Wizardly Template",
-  },
-  {
-    id: 3,
     title: "Resume Template",
     description: `
         [Name]

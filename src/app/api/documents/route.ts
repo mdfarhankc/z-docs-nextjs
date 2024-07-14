@@ -3,6 +3,11 @@ import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
+interface RequestBodyType {
+  title?: string;
+  description?: string;
+}
+
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
@@ -10,11 +15,13 @@ export async function POST(req: Request) {
       return new NextResponse("User Not Authenticated", { status: 401 });
     }
 
+    const { title, description }: RequestBodyType = await req.json();
+
     const newDocument = await db.document.create({
       data: {
         userId: userId,
-        title: "Untitled Document",
-        description: "",
+        title: title || "Untitled Document",
+        description: description || "",
       },
     });
 

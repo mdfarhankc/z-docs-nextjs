@@ -18,6 +18,7 @@ import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { redirect, useRouter } from "next/navigation";
 import DrawerAI from "./DrawerAI";
+import Link from "next/link";
 
 const FormSchema = z.object({
   title: z.string().min(2).max(50),
@@ -81,10 +82,13 @@ const EditorBlock: React.FC<Props> = ({ document }) => {
   return (
     <div className="flex flex-col gap-3 items-center">
       <div className="flex justify-end gap-x-4 w-full h-full pt-4">
+        <Button variant={"secondary"} asChild>
+          <Link href={"/documents"}>Go Back</Link>
+        </Button>
         <Button variant={"destructive"} onClick={onDelete}>
           Delete
         </Button>
-        <DrawerAI />
+        {/* <DrawerAI /> */}
       </div>
       <div>
         <Form {...EditorForm}>
