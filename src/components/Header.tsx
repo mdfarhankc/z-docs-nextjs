@@ -1,6 +1,6 @@
 "use client";
 
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import React from "react";
 import Logo from "./Logo";
 import { ThemeToggleButton } from "./ThemeToggleButton";
@@ -37,7 +37,14 @@ const Header = () => {
         </SignedIn>
         <ThemeToggleButton />
         <SignedOut>
-          <SignInButton />
+          <nav className="flex justify-between items-center">
+            <Button variant={"link"} asChild>
+              <Link href={"sign-in"}>SignIn</Link>
+            </Button>
+            <Button variant={"link"} asChild>
+              <Link href={"sign-up"}>SignUp</Link>
+            </Button>
+          </nav>
         </SignedOut>
         <SignedIn>
           <UserButton />
