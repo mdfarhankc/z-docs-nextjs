@@ -16,12 +16,9 @@ const DocumentPage = async ({ params }: DocumentPageProps) => {
   });
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center">
+    <div className="min-h-[85vh] flex flex-col items-center justify-center">
       {getDocument ? (
-        <>
-          <h1>{getDocument.title}</h1>
-          <EditorBlock document={getDocument} />
-        </>
+        <EditorBlock document={getDocument} />
       ) : (
         <h1 className="text-center text-4xl text-primary">
           No Document Found!

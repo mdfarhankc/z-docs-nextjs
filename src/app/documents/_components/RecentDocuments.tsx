@@ -1,31 +1,21 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { db } from "@/utils/db";
+import { Card, CardContent } from "@/components/ui/card";
 import { auth } from "@clerk/nextjs/server";
+import { Document } from "@prisma/client";
 import { BookText } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const RecentDocuments = async () => {
+interface Props {
+  userDocuments: Document[];
+}
+
+const RecentDocuments = async ({ userDocuments }: Props) => {
   const { userId } = auth();
 
   if (!userId) {
     redirect("/");
   }
-
-  const userDocuments = await db.document.findMany({
-    where: {
-      userId: userId,
-    },
-    orderBy: {
-      createdAt: "asc",
-    },
-  });
 
   return (
     <div className="w-10/12 mx-auto my-4 p-5">
